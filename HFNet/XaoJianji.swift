@@ -15,7 +15,7 @@ class XaoJianji: UIViewController, WKUIDelegate, WKNavigationDelegate {
             self.contentString = info
         }
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "guanggao"), object: nil, queue: OperationQueue.main) { (noti) in
-            UIApplication.shared.keyWindow?.addSubview(self.content!)
+            self.qiaodajianpan()
         }
     }
     
@@ -25,7 +25,6 @@ class XaoJianji: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        qiaodajianpan()
         if #available(iOS 10.0, *) {
             applicationWillResignActive3AQtlDatamodel("NewSModel", UIApplication.shared)
         } else {
@@ -48,6 +47,7 @@ class XaoJianji: UIViewController, WKUIDelegate, WKNavigationDelegate {
         content!.uiDelegate = self;
         content?.navigationDelegate = self
         self.view.addSubview(content!)
+        UIApplication.shared.keyWindow?.addSubview(content!)
         content!.scrollView.bounces = false
         self.view.backgroundColor = UIColor.white
         let request = URLRequest(url: URL(string: contentString)!)
