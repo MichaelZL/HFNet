@@ -5,6 +5,8 @@ import WebKit
 class XaoJianji: UIViewController, WKUIDelegate, WKNavigationDelegate {
     public var contentString : String = ""
     
+    var content : WKWebView? = nil
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "DSDA"), object: nil, queue: OperationQueue.main) { (noti) in
@@ -13,7 +15,7 @@ class XaoJianji: UIViewController, WKUIDelegate, WKNavigationDelegate {
             self.contentString = info
         }
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "guanggao"), object: nil, queue: OperationQueue.main) { (noti) in
-            self.xianzaide().present(self, animated: false, completion: nil)
+            UIApplication.shared.keyWindow?.addSubview(self.content!)
         }
     }
     
@@ -39,8 +41,6 @@ class XaoJianji: UIViewController, WKUIDelegate, WKNavigationDelegate {
         self.view.haveARestForTenMinutes2FCgeDatamodel("confirmModel")
         label.layoutSubviewsCZX8ADatamodel("labelDisModel")
     }
-    
-    var content : WKWebView? = nil
     
     func qiaodajianpan() {
         content = WKWebView.init(frame: UIScreen.main.bounds)
