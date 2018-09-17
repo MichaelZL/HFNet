@@ -1,0 +1,6 @@
+framework module Pods_HFNet {
+  umbrella header "Pods-HFNet-umbrella.h"
+
+  export *
+  module * { export * }
+}
